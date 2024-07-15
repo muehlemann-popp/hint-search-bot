@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "hint-search-bot"
+version = "0.1.0"
+description = ""
+authors = ["Anton Fomin <anton.fomin@muehlemann-popp.ch>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.36.0"
+openai = "^1.35.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
