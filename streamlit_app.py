@@ -16,6 +16,12 @@ if not openai_api_key:
 else:
     thread = create_thread()
 
+    st.write(
+        """
+        I am a simple chatbot that can help you find tickets related to a search query.
+        Please enter your query in the chat input field below.
+        """
+    )
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
     if "messages" not in st.session_state:
