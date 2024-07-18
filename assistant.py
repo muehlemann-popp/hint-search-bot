@@ -19,24 +19,29 @@ def restore_messages(messages, thread: Thread):
 
 
 def query(prompt: str, thread: Thread) -> list[Message] | RunStatus:
+    # full_prompt = f"""
+    # In all available files, find tickets related to the following search query inside <query> markers.
+    # <query>{prompt}<query>
+    #
+    # The output should be in the format inside <output> markers:
+    #
+    # <output>
+    # Link: <link to the ticket><br/>
+    # Name: <ticket name><br/>
+    # Description: <short summary ticket description><br/>
+    # Status: <status><br/>
+    # <br/>
+    # <br/>
+    # <output>
+    #
+    # Return as many tickets as you can find.
+    # Do not include file citations in the output.
+    # Do not wrap the output in any markers.
+    # """
     full_prompt = f"""
-    In all available files, find tickets related to the following search query inside <query> markers.
-    <query>{prompt}<query>
-    
-    The output should be in the format inside <output> markers:
-
-    <output>
-    Link: <link to the ticket><br/>
-    Name: <ticket name><br/>
-    Description: <short summary ticket description><br/>
-    Status: <status><br/>
-    <br/>
-    <br/>
-    <output>
-
-    Return as many tickets as you can find.
-    Do not include file citations in the output.
-    Do not wrap the output in any markers.
+        {prompt}
+        Do not output file citations annotations.
+        Provide the list of tickets ids in the end of the answer.
     """
     client.beta.threads.messages.create(
         thread_id=thread.id,
